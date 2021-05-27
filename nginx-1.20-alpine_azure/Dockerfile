@@ -9,6 +9,7 @@ ENV COMPOSER_HOME /composer
 
 RUN mkdir /work
 
+
 # Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
 RUN apk add openssh \
      && echo "root:Docker!" | chpasswd 
