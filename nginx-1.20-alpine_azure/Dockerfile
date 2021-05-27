@@ -50,6 +50,6 @@ RUN { \
     } > /tmp/docker-entrypoint.sh
      
 RUN chmod 777 /tmp/docker-entrypoint.sh
-EXPOSE 80 2222
+EXPOSE 8080 2222
 
 ENTRYPOINT ["/tmp/docker-entrypoint.sh"]
