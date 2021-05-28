@@ -1,6 +1,5 @@
 FROM nginx:1.20-alpine
 
-#RUN mkdir /work
 #
 # Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
 RUN apk add openssh \
@@ -45,4 +44,7 @@ RUN { \
     } > docker-entrypoint.d/40-run-openssh.sh
      
 RUN chmod 777 /docker-entrypoint.d/40-run-openssh.sh
+
+RUN mkdir /work
+
 EXPOSE 80 8080 2222
