@@ -1,15 +1,7 @@
 FROM nginx:1.20-alpine
 
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_HOME /composer
-
-# postgres with composer
-#RUN set -eux && \
-#	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.12
-
-RUN mkdir /work
-
-
+#RUN mkdir /work
+#
 # Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
 RUN apk add openssh \
      && echo "root:Docker!" | chpasswd 
@@ -49,10 +41,12 @@ RUN { \
     echo "if [ ! -d '/var/run/sshd' ]; then                                 "; \
     echo "  mkdir -p /var/run/sshd                                          "; \
     echo "fi                                                                "; \
-    echo '/usr/sbin/sshd -D'; \
-    } > /tmp/docker-entrypoint.sh
+    echo '/usr/sbin/sshd'; \
+    } > docker-entrypoint.d/40-run-openssh.sh
      
-RUN chmod 777 /tmp/docker-entrypoint.sh
-EXPOSE 8080 2222
+RUN chmod 777 /docker-entrypoint.d/40-run-openssh.sh
+EXPOSE 80 8080 2222
 
-ENTRYPOINT ["/tmp/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+STOPSIGNAL SIGQUIT
+CMD ["nginx", "-g", "daemon off;"]
