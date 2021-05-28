@@ -3,5 +3,5 @@ version: '3.3'
 services:
   nginx-1.20-alpine_azure:
     build: ./nginx-1.20-alpine_azure
-  php80-fpm-alpine_azure_postgresql:
-    build: ./php80-fpm-alpine_azure_postgresql
+  php80-fpm-alpine_azure-postgresql:
+    build: ./php80-fpm-alpine_azure-postgresql
