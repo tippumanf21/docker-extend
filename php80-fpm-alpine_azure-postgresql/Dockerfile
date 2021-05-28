@@ -12,14 +12,14 @@ RUN apk --update add --virtual build-dependencies build-base openssl-dev autocon
 
 # postgres with composer
 RUN set -eux && \
-  apk add --no-cache --virtual=.build postgresql-dev libzip-dev libjpeg-turbo-dev libpng-dev build-base && \
-  apk add --no-cache postgresql-libs libzip tzdata libjpeg-turbo libpng autoconf && \
-  docker-php-ext-configure gd --with-jpeg=/usr/include/ && \
-  docker-php-ext-install gd pdo pdo_\tpgsql pgsql zip && \
-  pecl install xdebug && \
-  docker-php-ext-enable xdebug && \
-  apk del --purge .build && \
-  curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.12
+    apk add --no-cache --virtual=.build postgresql-dev libzip-dev libjpeg-turbo-dev libpng-dev build-base && \
+    apk add --no-cache postgresql-libs libzip tzdata libjpeg-turbo libpng autoconf && \
+    docker-php-ext-configure gd --with-jpeg=/usr/include/ && \
+    docker-php-ext-install gd pdo pdo_pgsql pgsql zip && \
+    pecl install xdebug && \
+    docker-php-ext-enable xdebug && \
+    apk del --purge .build && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.12
 
 RUN mkdir /work
 
