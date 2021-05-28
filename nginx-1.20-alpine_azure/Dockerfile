@@ -46,7 +46,3 @@ RUN { \
      
 RUN chmod 777 /docker-entrypoint.d/40-run-openssh.sh
 EXPOSE 80 8080 2222
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
-STOPSIGNAL SIGQUIT
-CMD ["nginx", "-g", "daemon off;"]
