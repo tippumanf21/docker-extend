@@ -5,3 +5,5 @@ services:
     build: ./nginx-1.20-alpine_azure
   php80-fpm-alpine_azure-postgresql:
     build: ./php80-fpm-alpine_azure-postgresql
+  php80-fpm-alpine_laravel-worker:
+    build: ./php80-fpm-alpine_laravel-worker
