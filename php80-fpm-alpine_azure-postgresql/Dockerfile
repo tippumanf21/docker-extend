@@ -16,7 +16,7 @@ RUN set -eux && \
     apk add --no-cache postgresql-libs libzip tzdata libjpeg-turbo libpng autoconf && \
     docker-php-ext-configure gd --with-jpeg=/usr/include/ && \
     docker-php-ext-configure opcache --enable-opcache && \
-    docker-php-ext-install gd opcache pdo pdo_pgsql pgsql pdo_mysql zip && \
+    docker-php-ext-install gd opcache pdo pdo_pgsql pgsql zip && \
     pecl install xdebug && \
     apk del --purge .build && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.12
