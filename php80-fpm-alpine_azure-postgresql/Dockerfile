@@ -18,7 +18,6 @@ RUN set -eux && \
     docker-php-ext-configure opcache --enable-opcache && \
     docker-php-ext-install gd opcache pdo pdo_pgsql pgsql pdo_mysql zip && \
     pecl install xdebug && \
-   # docker-php-ext-enable xdebug && \
     apk del --purge .build && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.12
 
