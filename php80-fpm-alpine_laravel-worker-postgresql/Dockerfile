@@ -1,11 +1,11 @@
 FROM php:8.0-fpm-alpine
 
 # mongodb
-RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
-  && pecl install mongodb \
-  && docker-php-ext-enable mongodb \
-  && apk del build-dependencies build-base openssl-dev autoconf \
-  && rm -rf /var/cache/apk/*
+#RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
+#  && pecl install mongodb \
+#  && docker-php-ext-enable mongodb \
+#  && apk del build-dependencies build-base openssl-dev autoconf \
+#  && rm -rf /var/cache/apk/*
 
 # postgres with composer
 RUN set -eux && \
