@@ -5,6 +5,7 @@ ENV COMPOSER_HOME /composer
 
 # mongodb
 RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
+
   && pecl install mongodb \
   && docker-php-ext-enable mongodb \
   && apk del build-dependencies build-base openssl-dev autoconf \
@@ -12,15 +13,21 @@ RUN apk --update add --virtual build-dependencies build-base openssl-dev autocon
 
 # postgres with composer
 RUN set -eux && \
+
     apk add --no-cache --virtual=.build postgresql-dev libzip-dev libjpeg-turbo-dev libpng-dev build-base && \
+
     apk add --no-cache postgresql-libs libzip tzdata libjpeg-turbo libpng autoconf && \
+
     docker-php-ext-configure gd --with-jpeg=/usr/include/ && \
     docker-php-ext-configure opcache --enable-opcache && \
     docker-php-ext-install gd opcache pdo pdo_pgsql pgsql zip && \
+    pecl install xdebug && \
+    docker-php-ext-enable xdebug && \
     apk del --purge .build && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.12
 
 RUN { \
+
     echo '[opcache]'; \
     echo 'opcache.jit_buffer_size = 128M'; \
     echo 'opcache.enable = 1'; \
@@ -34,9 +41,11 @@ RUN mkdir /work
 
 # Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
 RUN apk add openssh \
+
      && echo "root:Docker!" | chpasswd 
      
 RUN { \
+
     echo 'Port            2222'; \
     echo 'ListenAddress       0.0.0.0'; \
     echo 'LoginGraceTime      180'; \
@@ -52,6 +61,7 @@ RUN { \
     } > /etc/ssh/sshd_config 
      
 RUN { \
+
     echo '#!/bin/sh'; \
     echo 'php-fpm -D'; \
     echo 'ssh-keygen -A'; \
