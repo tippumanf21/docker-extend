@@ -13,7 +13,7 @@ RUN set -eux && \
     apk add --no-cache postgresql-libs libzip tzdata libjpeg-turbo libpng autoconf && \
     docker-php-ext-configure gd --with-jpeg=/usr/include/ && \
     docker-php-ext-configure opcache --enable-opcache && \
-    docker-php-ext-install gd opcache pdo pdo_pgsql pgsql zip && \
+    docker-php-ext-install gd opcache pdo pdo_pgsql pgsql pdo_mysql zip && \
     apk del --purge .build
 
 RUN { \
