@@ -1,2 +1,3 @@
-docker push kyamamoto0work/php80-fpm-alpine_laravel-worker-postgresql:latest
+docker login
+docker push kyamamoto0work/php80-fpm-alpine_laravel-worker-postgresql
 pause

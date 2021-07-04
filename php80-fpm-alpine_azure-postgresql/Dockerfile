@@ -4,11 +4,11 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 
 # mongodb
-#RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
-#  && pecl install mongodb \
-#  && docker-php-ext-enable mongodb \
-#  && apk del build-dependencies build-base openssl-dev autoconf \
-#  && rm -rf /var/cache/apk/*
+RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
+  && pecl install mongodb \
+  && docker-php-ext-enable mongodb \
+  && apk del build-dependencies build-base openssl-dev autoconf \
+  && rm -rf /var/cache/apk/*
 
 # postgres with composer
 RUN set -eux && \
